@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OVERWHELM HAMBURGER and BAR STAND</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;700&family=Oswald:wght@400;700&display=swap');
+
+        :root {
+            --bg-color: #1a1a1a;
+            --text-color: #f0f0f0;
+            --accent-pink: #8B004B;
+            /* Vintage wallpaper color */
+            --accent-gold: #D4AF37;
+            /* Chandelier/Luxury */
+            --accent-teal: #004d40;
+            /* Tiles */
+            --font-heading: 'Anton', sans-serif;
+            --font-subheading: 'Oswald', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(26, 26, 26, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            color: var(--text-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--accent-gold);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-family: var(--font-subheading);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent-pink);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url('uploaded_image_4_1765964516212.jpg');
+            /* Interior Window */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            margin-top: 0;
+        }
+
+        .hero h1 {
+            font-family: var(--font-heading);
+            font-size: 5rem;
+            text-transform: uppercase;
+            line-height: 1;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero h1 span {
+            color: var(--accent-gold);
+            display: block;
+            font-size: 2rem;
+            margin-top: 10px;
+            letter-spacing: 5px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .hero-btn {
+            padding: 15px 40px;
+            background: var(--accent-pink);
+            color: white;
+            text-decoration: none;
+            font-family: var(--font-subheading);
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 2px;
+            border: 1px solid var(--accent-pink);
+            transition: all 0.3s;
+        }
+
+        .hero-btn:hover {
+            background: transparent;
+            color: var(--accent-pink);
+        }
+
+        /* Sections */
+        section {
+            padding: 100px 10%;
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            margin-bottom: 50px;
+            text-transform: uppercase;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 5px;
+            background: var(--accent-gold);
+            bottom: -10px;
+            left: 0;
+        }
+
+        /* About Grid */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-family: var(--font-subheading);
+            color: var(--accent-pink);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            color: #ccc;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 10px 10px 0 var(--accent-teal);
+            filter: grayscale(20%);
+            transition: filter 0.3s;
+        }
+
+        .about-image img:hover {
+            filter: grayscale(0%);
+        }
+
+        /* Menu Highlight (Beef & Broccoli) */
+        .menu-highlight {
+            background: #222;
+            text-align: center;
+        }
+
+        .highlight-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            margin-top: 40px;
+            text-align: left;
+        }
+
+        .highlight-img img {
+            width: 100%;
+            border: 2px solid var(--accent-gold);
+        }
+
+        .highlight-info h2 {
+            font-family: var(--font-subheading);
+            color: var(--accent-gold);
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .highlight-info p {
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: var(--accent-teal);
+            color: white;
+            padding: 5px 15px;
+            font-size: 0.8rem;
+            margin-right: 10px;
+            font-family: var(--font-subheading);
+            text-transform: uppercase;
+        }
+
+        /* Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            height: 300px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Contact / Footer */
+        .contact-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)), url('uploaded_image_4_1765964516212.jpg');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+
+        .contact-item {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            width: 300px;
+            transition: transform 0.3s;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-gold);
+        }
+
+        .contact-item h4 {
+            font-family: var(--font-subheading);
+            color: var(--accent-gold);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .btn-contact {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 25px;
+            background: white;
+            color: black;
+            text-decoration: none;
+            font-weight: bold;
+            font-family: var(--font-subheading);
+            text-transform: uppercase;
+            border-radius: 4px;
+        }
+
+        .btn-contact.line {
+            background: #06C755;
+            color: white;
+        }
+
+        .btn-contact.instagram {
+            background: #E4405F;
+            color: white;
+        }
+
+        .btn-contact.phone {
+            background: var(--text-color);
+            color: var(--bg-color);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.8rem;
+            color: #666;
+            border-top: 1px solid #333;
+        }
+
+        /* Shop List Grid */
+        .shop-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .shop-card {
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 40px;
+            text-align: left;
+            backdrop-filter: blur(5px);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .shop-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-gold);
+        }
+
+        .shop-card h3 {
+            font-family: var(--font-subheading);
+            font-size: 1.8rem;
+            color: var(--accent-gold);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .shop-card .role {
+            font-size: 0.9rem;
+            color: var(--accent-pink);
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .shop-card .desc {
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+            color: #ddd;
+            line-height: 1.6;
+        }
+
+        .shop-info {
+            margin-bottom: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+        }
+
+        .shop-info p {
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .shop-info a {
+            color: var(--text-color);
+            text-decoration: none;
+        }
+
+        .shop-actions {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn-shop {
+            padding: 10px 20px;
+            border: 1px solid var(--text-color);
+            color: var(--text-color);
+            text-decoration: none;
+            font-family: var(--font-subheading);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            transition: all 0.3s;
+        }
+
+        .btn-shop:hover {
+            background: var(--text-color);
+            color: var(--bg-color);
+        }
+
+        /* Responsive improvements */
+        @media (max-width: 768px) {
+            .shop-card {
+                padding: 30px 20px;
+            }
+
+            .shop-actions {
+                flex-direction: column;
+            }
+
+            .btn-shop {
+                text-align: center;
+            }
+        }
+    </style>
+    <meta name="description" content="学芸大学駅から少し歩いた住宅街にあるハンバーガーショップ。ヒップホップとヴィンテージが融合した空間で、こだわりのハンドチョップパティを提供。">
+</head>
+
+<body>
+
+    <header class="header">
+        <a href="#" class="logo">OVERWHELM <span>HAMBURGER</span></a>
+        <nav>
+            <ul>
+                <li><a href="#concept">Concept</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#shoplist">Shop List</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="hero">
+            <h1 class="fade-in">Rough <br><span>& Luxury</span></h1>
+            <p class="fade-in" style="animation-delay: 0.3s;">"自己紹介をしなくても伝わる店を"</p>
+            <a href="#menu" class="hero-btn fade-in" style="animation-delay: 0.6s;">CHECK MENU</a>
+        </div>
+
+        <section id="concept">
+            <div class="section-title">Concept</div>
+            <div class="about-grid">
+                <div class="about-image">
+                    <img src="hand_chop_patty.jpg" alt="Hand-Chop Patty">
+                </div>
+                <div class="about-text">
+                    <h3>Hand-Chop Patty</h3>
+                    <p>当店のハンバーガーは手作りが基本です。</p>
+                    <p>ブラックアンガス牛の塊肉をサイコロ状に手切りし、丁寧に成型した〝ハンドチョップパティ〟。<br>
+                        自家製燻製マヨネーズ・トマト・グリルドオニオンとともに、オリジナルバンズでサンドしています。</p>
+                    <p>まるでステーキのような肉々しさと、口いっぱいに広がる濃厚な旨みをお楽しみください。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="menu" class="menu-highlight">
+            <div class="section-title">Menu</div>
+            <div class="highlight-content">
+                <div class="highlight-info">
+                    <span class="tag">SIGNATURE</span>
+                    <h2>Beef & Broccoli<br>Cheese Burger</h2>
+                    <p>通称 "ビーブロ"。</p>
+                    <p>NYのチャイニーズフード「ビーフ＆ブロッコリー」と、<br>
+                        ティンバーランドのフィールドブーツからインスパイアされた一品。</p>
+                    <p>揚げたブロッコリーの香ばしさと、余った茎で作った特製ソースが、<br>
+                        ハンドチョップパティの旨味を引き立てます。</p>
+                </div>
+                <div class="highlight-img">
+                    <img src="beef_broccoli_burger.png" alt="Beef and Broccoli Burger">
+                </div>
+            </div>
+            <div class="limited-menu" style="margin-top: 80px; text-align: center;">
+                <div class="section-title" style="font-size: 2rem; margin-bottom: 30px;">Limited Menu</div>
+                <div class="limited-item"
+                    style="background: rgba(255,255,255,0.05); padding: 30px; border-radius: 8px; border: 1px solid var(--accent-pink);">
+                    <h3
+                        style="color: var(--accent-gold); font-family: var(--font-subheading); text-transform: uppercase; margin-bottom: 15px;">
+                        Seven Lucky Gods Shake</h3>
+                    <p style="margin-bottom: 15px;">七福神をモチーフにした7色のシェイク。</p>
+                    <p style="font-size: 0.9rem; color: #ccc;">Choco Mint / Pumpkin / Peach / and more...</p>
+                    <small style="display: block; margin-top: 15px; color: var(--accent-pink);">* Gakugeidaigaku Branch
+                        Only</small>
+                </div>
+            </div>
+
+            <div class="gallery-grid" style="margin-top: 50px;">
+                <div class="gallery-item"><img src="uploaded_image_1_1765964516212.jpg" alt="Burger Close-up"></div>
+                <div class="gallery-item"><img src="uploaded_image_4_1765964516212.jpg" alt="Interior"></div>
+                <div class="gallery-item"><img src="new_burger.jpg" alt="New Burger"></div>
+            </div>
+        </section>
+
+        <section id="shoplist" class="contact-section">
+            <div class="section-title" style="color:white; text-shadow: 2px 2px 4px black;">Shop List</div>
+            <div class="shop-grid">
+                <!-- Gakugeidaigaku -->
+                <div class="shop-card">
+                    <h3>GAKUGEIDAIGAKU</h3>
+                    <p class="role">HAMBURGER & BAR STAND</p>
+                    <p class="desc">異国情緒漂うラグジュアリーな空間。<br>テーブル、ソファ、カウンターで様々なシーンに。</p>
+                    <div class="shop-info">
+                        <p>東京都目黒区中央町1丁目16-14</p>
+                        <p>TEL: <a href="tel:0364512400">03-6451-2400</a></p>
+                        <p>Open: 11:00 - 0:00</p>
+                    </div>
+                    <div class="shop-actions">
+                        <a href="https://maps.app.goo.gl/BQkUsYmnVjsQTQnX6" target="_blank" class="btn-shop">Google
+                            Maps</a>
+                        <a href="#" target="_blank" class="btn-shop">LINE Reserve</a>
+                        <a href="https://www.instagram.com/overwhelm_hamburgershop/" target="_blank"
+                            class="btn-shop">Instagram</a>
+                    </div>
+                </div>
+
+                <!-- Nakameguro -->
+                <div class="shop-card">
+                    <h3>NAKAMEGURO</h3>
+                    <p class="role">burger & apparel</p>
+                    <p class="desc">スタイリッシュで明るい2号店。<br>脇道からは併設のアパレルショップへ。</p>
+                    <div class="shop-info">
+                        <p>東京都目黒区上目黒... (蛇崩・伊勢脇通り)</p>
+                        <p>TEL: <a href="tel:0364510059">03-6451-0059</a></p>
+                        <p>Open: (Check Instagram)</p>
+                    </div>
+                    <div class="shop-actions">
+                        <a href="https://maps.app.goo.gl/C6Yg6BZ46YSrCbrr9" target="_blank" class="btn-shop">Google
+                            Maps</a>
+                        <a href="#" target="_blank" class="btn-shop">LINE Reserve</a>
+                        <a href="https://www.instagram.com/overwhelm_hamburgershop/" target="_blank"
+                            class="btn-shop">Instagram</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 OVERWHELM HAMBURGER and BAR STAND. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            const fadeElements = document.querySelectorAll('.section-title, .about-text, .about-image, .highlight-info, .highlight-img, .gallery-item, .contact-item');
+
+            fadeElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+                observer.observe(el);
+            });
+
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
